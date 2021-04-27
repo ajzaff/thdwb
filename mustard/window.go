@@ -34,8 +34,8 @@ func CreateNewWindow(title string, width int, height int, hiDPI bool) *Window {
 
 	window := &Window{
 		title:  title,
-		width:  int(float32(width) / xscale),
-		height: int(float32(height) / yscale),
+		width:  int(float32(width) * xscale),
+		height: int(float32(height) * yscale),
 		hiDPI:  hiDPI,
 		glw:    glw,
 
@@ -136,8 +136,8 @@ func (window *Window) addEvents() {
 			xscale, yscale = w.GetContentScale()
 		}
 
-		swidth := int(float32(width) / xscale)
-		sheight := int(float32(height) / yscale)
+		swidth := int(float32(width) * xscale)
+		sheight := int(float32(height) * yscale)
 
 		window.width, window.height = swidth, sheight
 		window.RecreateContext()
